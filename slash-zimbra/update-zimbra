@@ -1,0 +1,44 @@
+#!/bin/bash
+# Do this after a ZCS install to fix necessary permissions
+# requires sudo/root
+# if [ "$USER" != "root" ]; then
+#     echo "must run this script as root" 1>&2
+#     exit 1
+# fi
+
+DN=$(dirname $0)
+chown zimbra:zimbra /opt/zimbra/.
+chown zimbra:zimbra /opt/zimbra/.*
+chmod -R o+w /opt/zimbra/lib/
+chmod -R o+w /opt/zimbra/jetty/
+chmod -R o+w /opt/zimbra/common/etc/openldap/schema
+chmod o+w /opt/zimbra/conf/zimbra.ldif
+chmod +w /opt/zimbra/conf/attrs/zimbra-attrs.xml
+chmod -R o+w /opt/zimbra/common/etc/openldap/zimbra
+cp ${DN}/junit-4.8.2.jar  /opt/zimbra/jetty/webapps/service/WEB-INF/lib/.
+echo "zimbra:zimbra" | chpasswd
+
+OZ=${DN}/opt-zimbra
+for f in $(ls ${OZ})
+do
+    F=${OZ}/${f}
+    if [ "$f" = "DOT-ssh" ]
+    then
+        cp ${F}/* /opt/zimbra/.ssh
+        chown zimbra /opt/zimbra/.ssh/*
+    fi
+
+    if [ -f "${F}" ]
+    then
+        F2=".$(echo ${f} | tr -d 'DOT-')"
+        cp "${F}" "/opt/zimbra/${F2}"
+        chown zimbra "/opt/zimbra/${F2}"
+    fi
+done
+
+echo "Enter your GitHub email address, followed by [ENTER]:"
+read gitemail
+echo "Enter your first and last name, followed by [ENTER]:"
+read gitname
+sed -i.bak "s/GITEMAIL/${gitemail}/" /opt/zimbra/.gitconfig
+sed -i.bak "s/GITNAME/${gitname}/" /opt/zimbra/.gitconfig

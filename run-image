@@ -1,0 +1,20 @@
+#!/bin/bash
+# Spin-up and initialize a container based on this image:
+#    gordy/zcs-ubuntu-1604:8.8.1-zcs-base
+# Assumes the presence of a user-defined network called "zcs".  Create it as follows:
+#   docker network create --driver bridge zcs
+# NOTE: The bridge driver assumes that all containers that use it are running
+#       from the same host.
+
+pushd $(dirname $0)
+ABS=$(pwd)
+popd
+
+docker run --network zcs \
+  --hostname zcs-dev.test \
+  -p 2222:22 -p 443:443 -p 993:993 -p 5000:5000 \
+  -v ${ABS}/slash-zimbra:/zimbra \
+  -v ${ABS}/home-zimbra:/home/zimbra \
+  --name=zcs-dev \
+  -it gordy/zcs-ubuntu-1604:8.8.1-zcs-base \
+  /zimbra/init

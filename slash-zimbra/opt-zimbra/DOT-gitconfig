@@ -1,0 +1,87 @@
+[user]
+	email = GITEMAIL
+	name = GITNAME
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    cp = cherry-pick
+    df = diff
+    dc = diff --cached
+    # Use this command to generate list of files that are part of a branch; e.g.,
+    # git dt 4.1 srv-111 | vim -
+    dt = diff-tree -r
+    lg = log -p
+	# Usage: git logf BASE-COMMIT..END-COMMIT
+	logf = log --decorate --pretty='format: %h [%an %aI] %s' --abbrev-commit
+    lol = log --graph --decorate --pretty=oneline --abbrev-commit
+    loll = log --graph --decorate --pretty='format: %h [%an]%d %s' --abbrev-commit
+    lolwc = log --decorate --pretty='format: %h [%an %at] %s' --abbrev-commit
+    lolw = log --decorate --pretty='format: [%an] %s' --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    lala = log --graph --decorate --pretty='format: %Cblue%h%Creset [%an]%Cred%d %Cgreen%s' --abbrev-commit --all
+    ls = ls-files
+    # Remote all of the remote tracking branches except for mine and mezeo's
+    # it is a good idea to do a "git gc" afterwards...
+    rmremote = branch -rd $(git branch -r | grep -vE 'mezeo|origin')
+    # Show files ignored by git:
+    ign = ls-files -o -i --exclude-standard
+    log-tree = log --graph --pretty='format:%d%x09%h (%an) %s%n' --all
+[gitflow "prefix"]
+	feature = feature/
+	bugfix = bugfix/
+	release = release/
+	hotfix = hotfix/
+	support = support/
+	versiontag = 
+[gitflow "init"]
+	defaults = true
+[gitflow]
+	default-config-version = 3
+[gitflow "feature.finish"]
+	fetch = true
+	keeplocal = false
+	keepremote = false
+	preserve-merges = true
+	push = true
+	rebase = true
+[gitflow "feature.rebase"]
+	interactive = true
+	preserve-merges = true
+[gitflow "feature.start"]
+	fetch = true
+[gitflow "bugfix.finish"]
+	fetch = true
+	keeplocal = false
+	keepremote = false
+	preserve-merges = true
+	rebase = true
+[gitflow "bugfix.rebase"]
+	interactive = true
+	preserve-merges = true
+[gitflow "bugfix.start"]
+	fetch = true
+[gitflow "release.finish"]
+	fetch = true
+	ff-master = false
+	keeplocal = false
+	keepremote = false
+	pushdevelop = true
+	pushproduction = true
+	pushtag = true
+	squash = false
+[gitflow "release.start"]
+	fetch = true
+[gitflow "hotfix.finish"]
+	fetch = true
+	keeplocal = false
+	keepremote = false
+	push = true
+	squash = false
+[gitflow "hotfix.start"]
+	fetch = true
