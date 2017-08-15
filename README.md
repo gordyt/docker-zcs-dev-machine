@@ -1,4 +1,13 @@
-# Notes
+# Overview
+
+The intent of this is to simplify getting started with ZCS development. In essense you will want to do the following:
+
+* Run `build-image` to create an Ubuntu 16.04 server image that has all of the packages from the 8.8.1 Beta build of ZCS installed, but not configured.
+* Run `run-image` to fire up a container, based on the image you just created, and finalize the ZCS install by running `zmsetup.pl`, passing in a configuration file.
+
+See details on the `run-image` script below for more information.
+
+
 
 ## build-image
 
@@ -34,6 +43,10 @@ questions:
 
 ## run-image
 
+Before running this for the first time, create a user-defined Docker network for the image to use as follows:
+
+	docker network create --driver bridge zcs
+
 This will run the image created by the `build-image` script.  Two host directories are 
 mapped into the image:
 
@@ -42,7 +55,7 @@ mapped into the image:
 
 
 NOTE: This takes a while (like 10 minutes or so on my mac) to complete because our configuration
-process is slow.  We are working on that!  The name of the container will be `zcs-dev`.  
+process is slow.  We are working on that!  The name of the container will be `zcs-dev`.
 
 Several ports are mapped to the host by the `run-image` script. Adjust this as required.
 At the last part of the script you are asked to enter your github email address and your name.
