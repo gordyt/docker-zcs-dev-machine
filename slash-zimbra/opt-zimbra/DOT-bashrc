@@ -62,3 +62,4 @@ alias run_pmd='/media/sf_Synacor/pmd-bin-5.7.0/bin/run.sh pmd -format text -R /m
 alias errors_and_failures='echo "ERRORS:"; grep -L '"'"'errors="0"'"'"' build/test/output/*.xml ; echo "FAILURES:"; grep -L '"'"'failures="0"'"'"' build/test/output/*.xml'
 alias deploy_mailbox='pushd $ZCS/zm-mailbox; for d in native common soap client store; do cd $d; ant clean compile publish-local deploy; cd ..; done; popd'
 alias publish_local_mailbox='pushd $ZCS/zm-mailbox; for d in native common soap client store; do cd $d; ant clean compile publish-local; cd ..; done; popd'
+alias tail_logs='tail -f /opt/zimbra/log/mailbox.log /opt/zimbra/log/imapd.log'
