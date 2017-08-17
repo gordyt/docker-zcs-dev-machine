@@ -1,4 +1,6 @@
 FROM ubuntu:16.04
+ENV GITEMAIL='user1@example.com'
+ENV GITNAME='First Last'
 
 # Install Basic Packages
 RUN apt-get update && \
@@ -45,4 +47,5 @@ RUN sed -i.bak 's/checkRequired/# checkRequired/' install.sh && \
 WORKDIR /tmp
 RUN rm -rf /tmp/release
 
+CMD /zimbra/init
 EXPOSE 22 25 80 110 143 443 465 587 993 995 7071 8443 9998 9999

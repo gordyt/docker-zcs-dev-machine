@@ -1,10 +1,9 @@
 #!/bin/bash
 # Do this after a ZCS install to fix necessary permissions
-# requires sudo/root
-# if [ "$USER" != "root" ]; then
-#     echo "must run this script as root" 1>&2
-#     exit 1
-# fi
+# Expects the following environment variables to be set. These are used to
+# update the information in the .gitconfig file that is laid down.
+# * GITEMAIL - The email address you use on github
+# * GITNAME - Your first and last name.
 
 DN=$(dirname $0)
 chown zimbra:zimbra /opt/zimbra/.
@@ -36,9 +35,5 @@ do
     fi
 done
 
-echo "Enter your GitHub email address, followed by [ENTER]:"
-read gitemail
-echo "Enter your first and last name, followed by [ENTER]:"
-read gitname
-sed -i.bak "s/GITEMAIL/${gitemail}/" /opt/zimbra/.gitconfig
-sed -i.bak "s/GITNAME/${gitname}/" /opt/zimbra/.gitconfig
+sed -i.bak "s/GITEMAIL/${GITEMAIL}/" /opt/zimbra/.gitconfig
+sed -i.bak "s/GITNAME/${GITNAME}/" /opt/zimbra/.gitconfig

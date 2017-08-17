@@ -1,0 +1,11 @@
+$ttl 38400
+zcs-dev.test.	IN	SOA	zcs-dev.test. root.localhost. (
+			1502922242
+			10800
+			3600
+			604800
+			38400 )
+zcs-dev.test.	IN	NS	zcs-dev.test.
+zcs-dev.test.	IN	A   10.0.0.3
+@	IN	MX	10 zcs-dev.test.
+@	IN	A	10.0.0.3

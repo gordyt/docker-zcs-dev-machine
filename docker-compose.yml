@@ -1,0 +1,54 @@
+version: "3"
+
+services:
+  bind:
+    image: sameersbn/bind:9.9.5-20170626
+    volumes:
+      - ./bind-data:/data/
+    container_name: bind
+    domainname: test
+    dns:
+      - 8.8.8.8
+    networks:
+      default:
+        ipv4_address: 10.0.0.2
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "10000:10000/tcp"
+
+  zsc-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: zimbra/zcs-ubuntu-1604:8.8.1-zcs-base
+    env_file: .env
+    depends_on:
+      - bind
+    volumes:
+      - ./slash-zimbra:/zimbra/
+      - ./home-zimbra:/home/zimbra/
+    container_name: zcs-dev
+    domainname: test
+    dns:
+      - 10.0.0.2
+      - 8.8.8.8
+    hostname: zcs-dev
+    networks:
+      default:
+        ipv4_address: 10.0.0.3
+    ports:
+      - "2222:22"
+      - "8143:143"
+      - "8443:443"
+      - "8993:993"
+      - "9998:9998"
+      - "9999:9999"
+
+networks:
+  default:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.0.0.0/24

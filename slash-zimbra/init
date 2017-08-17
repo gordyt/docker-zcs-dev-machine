@@ -3,4 +3,4 @@
 apt-get remove -y zimbra-logger zimbra-dnscache zimbra-snmp zimbra-apache zimbra-spell
 /opt/zimbra/libexec/zmsetup.pl -c /zimbra/zimbra-config
 /bin/bash /zimbra/update-zimbra
-sudo -i -u zimbra /bin/bash
+/bin/sleep infinity
