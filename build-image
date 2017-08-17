@@ -1,3 +1,0 @@
-#!/bin/bash
-docker build -f Dockerfile -t gordy/zcs-ubuntu-1604:8.8.1-zcs-base $(dirname $0)
-
