@@ -98,3 +98,15 @@ That file is `slash-zimbra/zimbra-config`.
 As an alternative to stopping the containers when you are not actively working
 on them, you can pause them to reduce resource consumption (`docker-compose pause`)
 an unpause them when you want to use them (`docker-compose unpause`).
+
+You should edit the `/etc/hosts` file on your, um, host and add a line like this:
+
+    127.0.0.1   zcs-dev.test
+
+Then you can log into the web client on `zcs-dev` from a browser with the following
+URL:
+
+    https://zcs-dev.test:8443
+
+Take a look at the `docker-compose.yml` file to see all of the port mappings.
+
