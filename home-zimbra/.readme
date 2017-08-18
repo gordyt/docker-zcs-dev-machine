@@ -1,0 +1,3 @@
+This directory will be mounted in the container at 
+/home/zimbra.  This is where you should have all of your git 
+repos checked out.
