@@ -17,7 +17,7 @@ services:
       - "53:53/udp"
       - "10000:10000/tcp"
 
-  zsc-dev:
+  zcs-dev:
     build:
       context: .
       dockerfile: Dockerfile
