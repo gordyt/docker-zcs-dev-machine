@@ -1,7 +1,5 @@
 # Overview
 
-
-
 ## Configuration
 
 Copy the file `DOT-env` to `.env`.  Edit the file `.env` and replace the values
@@ -21,7 +19,7 @@ Here are a few special directories.
 ### home-zimbra
 
 This directory is mounted into the `zcs-dev` container as `/home/zimbra`. This
-follows the convetions described in the `README` file of [zm-build](https://github.com/Zimbra/zm-build).
+follows the conventions described in the `README` file of [zm-build](https://github.com/Zimbra/zm-build).
 You can checkout the various Zimbra git repositories that you are working
 with in their and all that will be preserved when you restart the container.
 
@@ -52,7 +50,7 @@ up again.
 Once the `docker-compose up -d` command returns, the containers are running.
 But the `zcs-dev` container will not be fully operational until it finishes
 the run time initialization.  Issue this command if you want to follow the
-intialization progress:
+initialization progress:
 
     docker logs -f zcs-dev
 
@@ -86,7 +84,7 @@ can read more about it [here](https://github.com/sameersbn/docker-bind).
 
 This is the container that running the ZCS installation.
 
-## Miscellanous Notes
+## Miscellaneous Notes
 
 As mentioned above, the `zimbra/zcs-ubuntu-1604:8.8.1-zcs-base` contains
 all of the `8.8.1` base `zimbra-*` packages installed, so you may tweak

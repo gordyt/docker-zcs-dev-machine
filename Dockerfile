@@ -29,7 +29,9 @@ RUN apt-get update && \
 
 # Trick build into skipping resolvconf as docker overrides for DNS
 # This is currently required by our installer script. Hopefully be
-# fixed soone.
+# fixed soon.  The `zimbra-os-requirements` packages depends
+# on the `resolvconf` package, and configuration of that is what
+# is breaking install.sh
 RUN echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
 
 RUN mkdir -p /tmp/release && \
