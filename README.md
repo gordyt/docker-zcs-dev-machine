@@ -59,6 +59,10 @@ fully operational:
 
     Moving /tmp/zmsetup.20170817-195059.log to /opt/zimbra/log
 
+If you like, just combine the two commands:
+
+    docker-compose up -d && docker logs -f zcs-dev
+
 You can then connect to that container as follows:
 
     docker exec -it zcs-dev bash
