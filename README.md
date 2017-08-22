@@ -1,5 +1,15 @@
 # Overview
 
+## Docker Configuration
+
+### Docker for Mac
+
+If you are running [Docker for Mac](https://www.docker.com/docker-mac), you should update
+_Preferences/Advanced_ as follows:
+
+![docker-mac-settings](media/docker-mac-settings.png)
+
+
 ## Configuration
 
 Copy the file `DOT-env` to `.env`.  Edit the file `.env` and replace the values
