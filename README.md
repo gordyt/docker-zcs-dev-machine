@@ -2,6 +2,13 @@
 
 ## Docker Configuration
 
+Two different Docker configuration instructions are provided below.
+
+1. Docker for Mac
+2. Docker + Virtualbox
+
+Please feel free to use either for getting Docker setup.  These instructions are Mac-centric.
+
 ### Docker for Mac
 
 If you are running [Docker for Mac](https://www.docker.com/docker-mac), you should update
@@ -9,6 +16,31 @@ _Preferences/Advanced_ as follows:
 
 ![docker-mac-settings](media/docker-mac-settings.png)
 
+
+
+### Docker + Virtualbox
+
+First step is to install [Virtualbox](https://www.virtualbox.org/wiki/VirtualBox).  I use [Homebrew Cask](https://caskroom.github.io/) for this, so installation is done as follows:
+
+	brew cask install virtualbox virtualbox-extension-pack
+
+Next step is to install the required Docker components.  I use [Homebrew](https://brew.sh/) for this:
+
+	brew install docker docker-compose docker-machine
+
+Once you have installed the prerequisites, the next step is to [Docker Machine](https://docs.docker.com/machine/overview/) to create a Docker host in Virtualbox.  This is what will actually host the containers that you run.
+
+	docker-machine create --virtualbox-disk-size 32000 --virtualbox-memory 6144 --virtualbox-cpu-count 4 --driver virtualbox default
+
+Then add the required environment variable to your `$HOME/.profile`.  You may see these variables by issuing the following command:
+
+    $ docker-machine env
+    export DOCKER_TLS_VERIFY="1"
+    export DOCKER_HOST="tcp://192.168.99.100:2376"
+    export DOCKER_CERT_PATH="/Users/gordy/.docker/machine/machines/default"
+    export DOCKER_MACHINE_NAME="default"
+    # Run this command to configure your shell:
+    # eval $(docker-machine env)
 
 ## Configuration
 
