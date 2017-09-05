@@ -37,7 +37,9 @@ RUN mkdir -p /tmp/release && \
     tar xzvf /tmp/zcs.tgz -C /tmp/release --strip-components=1 && \
     rm /tmp/zcs.tgz
 WORKDIR /tmp/release
-RUN sed -i.bak 's/checkRequired/# checkRequired/' install.sh && \
+RUN groupadd -r -g 1000 zimbra && \
+    useradd -r -g zimbra -u 1000 -b /opt -s /bin/bash zimbra && \
+    sed -i.bak 's/checkRequired/# checkRequired/' install.sh && \
     ./install.sh -s -x --skip-upgrade-check < /zimbra/software-install-responses
 WORKDIR /tmp
 RUN rm -rf /tmp/release
