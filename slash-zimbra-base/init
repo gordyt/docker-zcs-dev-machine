@@ -1,0 +1,11 @@
+#!/bin/bash
+
+/opt/zimbra/libexec/zmsetup.pl -c /zimbra/zimbra-config
+sudo -i -u zimbra zmcontrol stop
+# backup ldap and remove ldap database file
+cd /opt/zimbra/data/ldap/mdb/db
+sudo -i -u zimbra /opt/zimbra/libexec/zmslapcat /opt/zimbra/data/ldap/mdb/db
+rm data.mdb
+echo "SETUP COMPLETE"
+/bin/sleep infinity
+

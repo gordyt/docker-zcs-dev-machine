@@ -1,0 +1,29 @@
+#!/bin/bash
+DP=$(dirname $0)
+BUILD_SLEEP=30
+NAME=zcs-dev
+IMAGE="zimbra/zcs-dev:8.8.1"
+
+function wait_build {
+    DONE=no
+    while [ "${DONE}" == "no" ]
+    do
+        echo "$(date) - Waiting for build to complete..."
+        sleep ${BUILD_SLEEP}
+        docker logs zcs-dev | grep -q 'SETUP COMPLETE'
+        if [ $? -eq 0 ]
+        then
+            echo "$(date) - Build has finished..."
+            DONE=yes
+        fi
+    done
+}
+
+docker-compose -f "${DP}/docker-compose-base.yml" up -d
+echo "$(date) - Pausing containers..."
+docker-compose -f "${DP}/docker-compose-base.yml" pause
+echo "$(date) - Creating image ${IMAGE} from paused container ${NAME}..."
+docker export ${NAME} | docker import - ${IMAGE}
+echo "$(date) - Shutting build containers down..."
+docker-compose -f "${DP}/docker-compose-base.yml" down
+echo "$(date) - Docker image ${IMAGE} is ready. Run with 'docker-compose up -d'"

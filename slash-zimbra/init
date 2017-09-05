@@ -1,6 +1,12 @@
 #!/bin/bash
+# usage: slapadd [-v] [-d debuglevel] [-f configfile] [-F configdir] [-o <name>[=<value>]] [-c]
+#         [-g] [-n databasenumber | -b suffix]
+#         [-l ldiffile] [-j linenumber] [-q] [-u] [-s] [-w]
 
-apt-get remove -y zimbra-logger zimbra-dnscache zimbra-snmp zimbra-apache zimbra-spell
-/opt/zimbra/libexec/zmsetup.pl -c /zimbra/zimbra-config
+sudo -i -u zimbra zmcontrol stop
+rm -f /opt/zimbra/data/ldap/mdb/db/data.mdb
+sudo -i -u zimbra /bin/bash -c "/opt/zimbra/common/sbin/slapadd -q -b '' -F '/opt/zimbra/data/ldap/config' -l '/opt/zimbra/data/ldap/mdb/db/ldap.bak'"
+sudo -i -u zimbra zmcontrol start
 /bin/bash /zimbra/update-zimbra
+echo "STARTUP COMPLETE"
 /bin/sleep infinity

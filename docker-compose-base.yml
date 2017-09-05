@@ -18,15 +18,14 @@ services:
       - "10000:10000/tcp"
 
   zcs-dev:
-    image: zimbra/zcs-dev:8.8.1
-    env_file: .env
-    entrypoint:
-      - /zimbra/init
+    build:
+      context: .
+      dockerfile: Dockerfile-base
+    image: zimbra/zcs-dev-base:8.8.1
     depends_on:
       - bind
     volumes:
-      - ./slash-zimbra:/zimbra/
-      - ./home-zimbra:/home/zimbra/
+      - ./slash-zimbra-base:/zimbra/
     container_name: zcs-dev
     domainname: test
     dns:

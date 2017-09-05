@@ -78,28 +78,32 @@ don't accidentally commit ssh keys to the git repo.
 
 ## Running the system
 
-Just do a `docker-compose up -d`.  The first time you do this it will have
-to create a base image `zimbra/zcs-ubuntu-1604:8.8.1-zcs-base`.  This base
-image will have all of the `zimbra-*` packages already installed, but not
-yet configured.  The actual configuration happens when the `zcs-dev` container is 
-started.
+Start by _downloading_ or _building_ the base image.
 
-Configuring Zimbra is a bit time-consuming (although we are working on that)
-so even after the base image has been created, if you shut down your
-containers (`docker-compose down`) it does take a while to bring them back
-up again.
+### Downloading the base image
+
+	docker pull zimbra/zcs-dev:8.8.1
+
+### Building the base image
+
+	./build-image
+
+
+Just do a `docker-compose up -d` to start your development containers.
 
 Once the `docker-compose up -d` command returns, the containers are running.
 But the `zcs-dev` container will not be fully operational until it finishes
-the run time initialization.  Issue this command if you want to follow the
-initialization progress:
+the run time initialization.  This takes about 1 minute. The majority of the time
+required to complete the initialization is with starting the Zimbra services.
+
+You can run this command to observe the initialization progress:
+
 
     docker logs -f zcs-dev
 
-Once you see something like this, the `zcs-dev` container will be
-fully operational:
+Once you see  this, the `zcs-dev` container will be fully operational:
 
-    Moving /tmp/zmsetup.20170817-195059.log to /opt/zimbra/log
+    STARTUP COMPLETE
 
 If you like, just combine the two commands:
 
@@ -132,12 +136,9 @@ This is the container that running the ZCS installation.
 
 ## Miscellaneous Notes
 
-As mentioned above, the `zimbra/zcs-ubuntu-1604:8.8.1-zcs-base` contains
-all of the `8.8.1` base `zimbra-*` packages installed, so you may tweak
-the configuration file that is passed into the initialization code
-however you like to control what actually gets started and configured.
+To stop your containers, just do this:
 
-That file is `slash-zimbra/zimbra-config`.
+	docker_compose down
 
 As an alternative to stopping the containers when you are not actively working
 on them, you can pause them to reduce resource consumption (`docker-compose pause`)
@@ -153,4 +154,3 @@ URL:
     https://zcs-dev.test:8443
 
 Take a look at the `docker-compose.yml` file to see all of the port mappings.
-
