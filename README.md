@@ -55,6 +55,11 @@ to BIND.  You can access this webadmin interface from a browser on your
 host by going to `http://localhost:10000`. Log in with username `root`
 and password with whatever is specified by `ROOT_PASSWORD`.
 
+The setting for `HOME_ZIMBRA` should be the path to the directory you wish
+to mount into your running `zcs-dev` container at `/home/zimbra`.  The
+example value shown in `DOT-env` points to the `home-zimbra` directory that
+is part of this repository.
+
 
 Here are a few special directories.
 

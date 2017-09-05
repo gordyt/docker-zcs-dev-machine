@@ -1,3 +1,4 @@
 GITEMAIL="user1@example.com"
 GITNAME="First Last"
 ROOT_PASSWORD="password"
+HOME_ZIMBRA=./home-zimbra

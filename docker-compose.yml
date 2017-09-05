@@ -26,7 +26,7 @@ services:
       - bind
     volumes:
       - ./slash-zimbra:/zimbra/
-      - ./home-zimbra:/home/zimbra/
+      - $HOME_ZIMBRA:/home/zimbra/
     container_name: zcs-dev
     domainname: test
     dns:
