@@ -20,6 +20,8 @@ function wait_build {
 }
 
 docker-compose -f "${DP}/docker-compose-base.yml" up -d
+wait_build
+
 echo "$(date) - Pausing containers..."
 docker-compose -f "${DP}/docker-compose-base.yml" pause
 echo "$(date) - Creating image ${IMAGE} from paused container ${NAME}..."
