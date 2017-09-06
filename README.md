@@ -52,8 +52,10 @@ and your actual first and last name. This information is used to initialize the
 
 The other setting in that file `ROOT_PASSWORD` is for the webadmin interface
 to BIND.  You can access this webadmin interface from a browser on your
-host by going to `http://localhost:10000`. Log in with username `root`
+host by going to `https://localhost:10000`. Log in with username `root`
 and password with whatever is specified by `ROOT_PASSWORD`.
+
+_NOTE_: If you are using [docker-machine](https://docs.docker.com/machine/get-started/) with [VirtualBox](https://www.virtualbox.org/wiki/VirtualBox), you will have to go into the _Network_ preferences for the `default` VM in _Virtualbox Manager_ and add a port forwarding rule.
 
 The setting for `HOME_ZIMBRA` should be the path to the directory you wish
 to mount into your running `zcs-dev` container at `/home/zimbra`.  The
