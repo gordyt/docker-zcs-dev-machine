@@ -2,7 +2,11 @@
 DP=$(dirname $0)
 BUILD_SLEEP=30
 NAME=zcs-dev
-IMAGE="zimbra/zcs-dev:8.8.1"
+TAG=8.8.1
+REPO=zimbra/zcs-dev
+REPO_BASE="${REPO}-base"
+IMAGE="${REPO}:${TAG}"
+IMAGE_BASE="${REPO_BASE}:${TAG}"
 
 function wait_build {
     DONE=no
@@ -19,6 +23,7 @@ function wait_build {
     done
 }
 
+echo "$(date) - Creating intermediate build image ${IMAGE_BASE}..."
 docker-compose -f "${DP}/docker-compose-base.yml" up -d
 wait_build
 
@@ -28,4 +33,7 @@ echo "$(date) - Creating image ${IMAGE} from paused container ${NAME}..."
 docker export ${NAME} | docker import - ${IMAGE}
 echo "$(date) - Shutting build containers down..."
 docker-compose -f "${DP}/docker-compose-base.yml" down
+echo "$(date) - Removing intermediate build image ${IMAGE_BASE}"
+docker rmi ${IMAGE_BASE}
 echo "$(date) - Docker image ${IMAGE} is ready. Run with 'docker-compose up -d'"
+
