@@ -58,21 +58,24 @@ and password with whatever is specified by `ROOT_PASSWORD`.
 The setting for `HOME_ZIMBRA` should be the path to the directory you wish
 to mount into your running `zcs-dev` container at `/home/zimbra`.  The
 example value shown in `DOT-env` points to the `home-zimbra` directory that
-is part of this repository.
+is part of this repository.  Here are a couple of examples for the `HOME_ZIMBRA` 
+envitonment variable setting:
+
+- `HOME_ZIMBRA=./home-zimbra` - This is the example value from `DOT-env`.
+- `HOME_ZIMBRA=~/zimbra` - This would mount a folder called `zimbra`, located in the `$HOME` directory of your host account to `/home/zimbra` in your `zcs-dev` container.
 
 
 Here are a few special directories.
 
 ### home-zimbra
 
-This directory is mounted into the `zcs-dev` container as `/home/zimbra`. This
-follows the conventions described in the `README` file of [zm-build](https://github.com/Zimbra/zm-build).
-You can checkout the various Zimbra git repositories that you are working
-with in their and all that will be preserved when you restart the container.
-
-I recommend you checkout the repos in a subdirectory of `home-zimbra` called
-`zcs`, as there is a handy environment variable (`ZCS`) that points to that
-directory. Note that you can set all this up after you spin up the containers.
+This directory is mounted into the `zcs-dev` container as
+`/home/zimbra` if you use the default value from `DOT-env` as the
+value you put in `.env`. This follows the conventions described in the
+`README` file of [zm-build](https://github.com/Zimbra/zm-build).  You
+can checkout the various Zimbra git repositories that you are working
+with in their and all that will be preserved when you restart the
+container.
 
 ### slash-zimbra/opt-zimbra/DOT-ssh
 
@@ -159,3 +162,6 @@ URL:
     https://zcs-dev.test:8443
 
 Take a look at the `docker-compose.yml` file to see all of the port mappings.
+
+If you need help seeing up a development environment, please take a look at [Setting up Eclipse and ItelliJ Community Edition](https://github.com/Zimbra/zm-mailbox/wiki/Setting-up-Eclipse-and-IntelliJ-IDEA-Community-Editpion).
+
