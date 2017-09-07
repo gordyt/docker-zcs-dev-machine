@@ -1,13 +1,12 @@
 # Overview
 
-## Docker Configuration
+## Docker Installation/Configuration
 
-Two different Docker configuration instructions are provided below.
+Three different Docker installation/configuration instructions are provided below.
 
-1. Docker for Mac
-2. Docker + Virtualbox
-
-Please feel free to use either for getting Docker setup.  These instructions are Mac-centric.
+1. Docker for Mac (recommended for Mac users)
+2. Docker + Virtualbox (alternate Mac installation)
+3. Linux (tested on Ubuntu 16.04)
 
 ### Docker for Mac
 
@@ -42,7 +41,54 @@ Then add the required environment variable to your `$HOME/.profile`.  You may se
     # Run this command to configure your shell:
     # eval $(docker-machine env)
 
-## Configuration
+## Linux (Ubuntu 16.04)
+
+Add GPG key for official Docker repository.
+
+	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+Add the Docker repository to APT sources.
+
+	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+Next, update the package database with the Docker packages from the newly added repo:
+
+	sudo apt-get update
+
+Make sure you are about to install from the Docker repo instead of the default Ubuntu 16.04 repo.
+
+	apt-cache policy docker-ce
+
+Install Docker.
+
+	sudo apt-get install -y docker-ce
+
+Verify is running.
+
+    sudo systemctl status docker
+    ● docker.service - Docker Application Container Engine
+       Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+       Active: active (running) since Tue 2017-08-01 14:38:48 CDT; 5s ago
+         Docs: https://docs.docker.com
+     Main PID: 6430 (dockerd)
+       CGroup: /system.slice/docker.service
+               ├─6430 /usr/bin/dockerd -H fd://
+               └─6443 docker-containerd -l unix:///var/run/docker/libcontainerd/docker-containerd.sock
+
+Add (your host) user to the docker group. This is so you do not have
+to use sudo with all of the docker commands.
+
+	sudo usermod -aG docker ${USER}
+
+Install docker-compose.
+
+    sudo mkdir -p /usr/local/bin
+    sudo chown ${USER}:${USER} /usr/local/bin
+    curl -L https://github.com/docker/compose/releases/download/1.15.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+
+
+## Additional Configuration
 
 Copy the file `DOT-env` to `.env`.  Edit the file `.env` and replace the values
 assigned to `GITEMAIL` and `GITNAME` with the email address you use for GitHub
