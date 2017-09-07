@@ -21,7 +21,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-base
-    image: zimbra/zcs-dev-base:8.8.1
+    image: zimbra/zcs-dev-base:8.8.3
     depends_on:
       - bind
     volumes:
