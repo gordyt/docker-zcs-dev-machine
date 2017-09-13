@@ -7,6 +7,7 @@ RUN apt-get update && \
     ant-contrib \
     build-essential \
     curl \
+    debhelper \
     dnsmasq \
     dnsutils \
     gettext \
