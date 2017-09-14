@@ -15,6 +15,17 @@ _Preferences/Advanced_ as follows:
 
 ![docker-mac-settings](media/docker-mac-settings.png)
 
+You can install _Docker for Mac_ in two ways:
+
+1. You can download it from [here](https://store.docker.com/editions/community/docker-ce-desktop-mac).  Get the _Stable_ version.
+2. You can install it via [Homebrew Cask](https://github.com/caskroom/homebrew-cask)
+
+#### Installing Docker for Mac via Homebrew Cask
+
+I assume you have already installed [Homebrew](https://brew.sh/) and [Homebrew Cask](https://github.com/caskroom/homebrew-cask). If so, just do the following.
+
+	$ brew update
+	$ brew cask install docker
 
 
 ### Docker + Virtualbox
