@@ -34,7 +34,7 @@ RUN apt-get update && \
 RUN echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
 COPY ./slash-zimbra-base /zimbra
 RUN mkdir -p /tmp/release && \
-    curl -s -k -o /tmp/zcs.tgz 'https://files.zimbra.com.s3.amazonaws.com/downloads/8.8.3_GA/zcs-8.8.3_GA_1872.UBUNTU16_64.20170905143325.tgz' && \
+    curl -s -k -o /tmp/zcs.tgz 'https://zcsdocker.s3.amazonaws.com/zcs-8.8.1_BETA1_2000.UBUNTU16_64.20170915161631.tgz' && \
     tar xzvf /tmp/zcs.tgz -C /tmp/release --strip-components=1 && \
     rm /tmp/zcs.tgz
 WORKDIR /tmp/release

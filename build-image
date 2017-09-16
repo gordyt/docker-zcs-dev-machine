@@ -2,7 +2,7 @@
 DP=$(dirname $0)
 BUILD_SLEEP=30
 NAME=zcs-dev
-TAG=8.8.3
+TAG=8.8.5alpha
 REPO=zimbra/zcs-dev
 REPO_BASE="${REPO}-base"
 IMAGE="${REPO}:${TAG}"

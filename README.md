@@ -149,7 +149,7 @@ Start by _downloading_ or _building_ the base image.
 
 ### Downloading the base image
 
-	docker pull zimbra/zcs-dev:8.8.3
+	docker pull zimbra/zcs-dev:8.8.5alpha
 
 ### Building the base image
 

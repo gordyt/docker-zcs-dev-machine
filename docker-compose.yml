@@ -19,7 +19,7 @@ services:
       - "10000:10000/tcp"
 
   zcs-dev:
-    image: zimbra/zcs-dev:8.8.3
+    image: zimbra/zcs-dev:8.8.5alpha
     env_file: .env
     entrypoint:
       - /zimbra/init
