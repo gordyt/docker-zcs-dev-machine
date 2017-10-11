@@ -222,5 +222,9 @@ URL:
 
 Take a look at the `docker-compose.yml` file to see all of the port mappings.
 
-If you need help seeing up a development environment, please take a look at [Setting up Eclipse and ItelliJ Community Edition](https://github.com/Zimbra/zm-mailbox/wiki/Setting-up-Eclipse-and-IntelliJ-IDEA-Community-Editpion).
+If you need help seeing up a development environment, please take a look at [Setting up Eclipse and ItelliJ Community Edition](https://github.com/Zimbra/zm-mailbox/wiki/Setting-up-Eclipse-and-IntelliJ-IDEA-Community-Edition)
 
+Your container also has all of the dependencies needed to build the installer.  Here is a quick about building the installer as the `zimbra` user:
+
+- Make sure that the permissions of the top-level directory (from which you are running the build) are set to `755`.
+- Make sure the output of the `umask` command for the user that is creating the build (`zimbra` in this case) is `0022`.  If it is not, enter `umask 0022` before running the build script.
